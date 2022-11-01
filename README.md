@@ -13,6 +13,9 @@ and your script does not contain additional layers of obfuscation (a UTF-16 LE B
  * `^` needs to be passed as `\c`
  * `"` needs to be passed as `\q`
  
+ # This script MUST be saved as ANSI to work!
+ I don't know why. I don't care why. Just do it.
+ 
  # Requirements
  JREPL.BAT must be in the same directory as this script. If it is not present, it will be downloaded from [DOSTips](https://www.dostips.com/forum/viewtopic.php?f=3&t=6044).
  
