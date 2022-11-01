@@ -40,6 +40,6 @@ if not exist "%~1" (
 set "temp_file=%~n1.tmp"
 if exist "%temp_file%" del "%temp_file%"
 if exist "___%~nx1" del "___%~nx1"
-call jrepl.bat "%hi%" "%lo%" /T "%%" /XSEQ /A /F "%~1" /O "%temp_file%"
+call jrepl.bat "%hi%" "%lo%" /T "" /X /A /F "%~1" /O "%temp_file%"
 call jrepl.bat "\x25(.)\x25" "$1" /XSEQ /F "%temp_file%" /O -
 ren "%temp_file%" "___%~nx1"
