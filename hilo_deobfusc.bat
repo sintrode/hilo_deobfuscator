@@ -3,8 +3,8 @@
 ::     hilo_deobfuscator.bat
 ::
 :: DESCRIPTION
-::     Removes the encryption from the obfuscator that creates @hi and @lo
-::     dictionaries and does a simple translation.
+::     Performs a basic substitution cipher to deobfuscate scripts that have
+::     had their text replaced with characters from the CHCP 708 charset.
 ::
 :: REQUIREMENTS
 ::     jrepl.bat (https://www.dostips.com/forum/viewtopic.php?f=3&t=6044)
@@ -24,7 +24,7 @@ if "%~1"=="" (
 )
 
 set "lo= !#$&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]\c_`abcdefghijklmnopqrstuvwxyz{|}~\q"
-set "hi=¡¢¤¥§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ£"
+set "hi=Â¡Â¢Â¤Â¥Â§Â¨Â©ÂªÂ«Â¬Â­Â®Â¯Â°Â±Â²Â³Â´ÂµÂ¶Â·Â¸Â¹ÂºÂ»Â¼Â½Â¾Â¿Ã€ÃÃ‚ÃƒÃ„Ã…Ã†Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃÃÃÃÃ‘Ã’Ã“Ã”Ã•Ã–Ã—Ã˜Ã™ÃšÃ›ÃœÃÃÃŸÃ Ã¡Ã¢Ã£Ã¤Ã¥Ã¦Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°Ã±Ã²Ã³Ã´ÃµÃ¶Ã·Ã¸Ã¹ÃºÃ»Ã¼Ã½Ã¾Ã¿Â£"
 
 if not exist JREPL.BAT (
 	echo jrepl.bat not found. Downloading it...
@@ -39,6 +39,7 @@ if not exist "%~1" (
 
 set "temp_file=%~n1.tmp"
 if exist "%temp_file%" del "%temp_file%"
+if exist "___%~nx1" del "___%~nx1"
 call jrepl.bat "%hi%" "%lo%" /T "%%" /XSEQ /A /F "%~1" /O "%temp_file%"
-call jrepl.bat "\x25(.)\x25" "$1" /XSEQ /A /F "%temp_file%" /O -
+call jrepl.bat "\x25(.)\x25" "$1" /XSEQ /F "%temp_file%" /O -
 ren "%temp_file%" "___%~nx1"
