@@ -23,6 +23,7 @@ if "%~1"=="" (
 	exit /b
 )
 
+chcp 1252 >nul
 set "lo= !#$&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]\c_`abcdefghijklmnopqrstuvwxyz{|}~\q"
 set "hi=¡¢¤¥§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ£"
 
